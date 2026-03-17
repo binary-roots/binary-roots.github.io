@@ -1,4 +1,5 @@
 import { useState, FormEvent } from "react";
+import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift, Bot, Sparkles, AppWindow, Workflow, BarChart3, Globe, Headset, HelpCircle, Wrench, FileText, Users, Brain, Zap, Send, Calendar, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,9 @@ import RadioOption from "@/components/RadioOption";
 import ProgressBar from "@/components/ProgressBar";
 import SuccessScreen from "@/components/SuccessScreen";
 import logo from "@/assets/binary-roots-logo.png";
+
+const POWER_AUTOMATE_URL =
+  "https://default605c73a9aa0c436a874e3f6e890fe3.73.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/c7709675b2324872a918767e3859f597/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=mN29kYA4pChuNzlDJT1jk757H-1AymFWXkni9rMS8mo";
 
 const ROLES = [
   "CTO / CIO",
@@ -84,14 +88,35 @@ const Index = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const payload = JSON.stringify({
+        name,
+        email,
+        company,
+        role,
+        interests: interests.join(", "),
+        improvements: improvements.join(", "),
+        timeline,
+        intent,
+        notes,
+      });
+      const res = await fetch(POWER_AUTOMATE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: payload,
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setSubmitted(true);
-    }, 1500);
+    } catch (err) {
+      console.error("Submission error:", err);
+      toast.error("Submission failed. Please try again or contact us directly.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
