@@ -133,7 +133,7 @@ const Index = () => {
         <div className="max-w-2xl mx-auto flex items-center justify-between px-4 py-3">
           <img src={logo} alt="Binary Roots" className="h-10 w-auto" />
           <span className="text-xs text-muted-foreground hidden sm:block">
-            AI · Power Platform · Microsoft 365 Solutions
+           Convergence India Expo 2026
           </span>
         </div>
       </header>
@@ -153,13 +153,14 @@ const Index = () => {
                 >
                   Let's Build Something Smarter
                   <br />
-                  <span className="bg-clip-text text-transparent gradient-primary">with AI & Microsoft</span>
+                  <span className="text-black">with Microsoft AI solutions</span>
                 </motion.h1>
                 <p className="text-muted-foreground max-w-lg mx-auto mb-4">
-                  Met us at Convergence India? Share your requirement and we'll suggest a tailored solution.
+                  Met us at Convergence India Expo? <br/>
+                  Share your requirement and we'll suggest a tailored solution.
                 </p>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-                  <Gift className="h-4 w-4" /> Get a use-case idea within 48 hours
+                  <Gift className="h-4 w-4" /> Claim a free Microsoft AI assessment
                 </span>
               </section>
 
@@ -242,27 +243,7 @@ const Index = () => {
                   </div>
                 </Section>
 
-                {/* Section 4: Priority & Intent */}
-                <Section title="Priority & Intent" icon={<Calendar className="h-5 w-5 text-primary" />}>
-                  <div className="space-y-5">
-                    <div>
-                      <p className="text-sm font-medium text-foreground mb-2">Timeline</p>
-                      <div className="flex flex-wrap gap-2">
-                        {TIMELINES.map((t) => (
-                          <RadioOption key={t} label={t} selected={timeline === t} onSelect={() => setTimeline(t)} />
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground mb-2">What are you looking for?</p>
-                      <div className="flex flex-wrap gap-2">
-                        {INTENTS.map((i) => (
-                          <RadioOption key={i} label={i} selected={intent === i} onSelect={() => setIntent(i)} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </Section>
+                {/* Section 4: Priority & Intent — hidden */}
 
                 {/* Optional */}
                 <Section title="Anything else?" icon={<FileText className="h-5 w-5 text-primary" />}>
@@ -281,12 +262,17 @@ const Index = () => {
                     {loading ? (
                       <><Loader2 className="h-4 w-4 animate-spin" /> Submitting...</>
                     ) : (
-                      <><Send className="h-4 w-4" /> Get My Use Case Idea</>
+                      <><Send className="h-4 w-4" /> Let's Get Started</>
                     )}
                   </Button>
-                  <button type="button" className="text-sm text-primary hover:underline underline-offset-4 transition-colors">
-                    Or book a 15-min discussion →
-                  </button>
+                  <a
+                    href="https://outlook.office.com/bookwithme/user/12d7131008c047479a2c0214acd5b9fe@binaryroots.com/meetingtype/wvITgFw4NU2517o6ePR_wA2?anonymous&ep=mlink"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-primary hover:underline underline-offset-4 transition-colors"
+                  >
+                    Or book a 30-min discussion →
+                  </a>
                 </div>
               </form>
             </motion.div>
@@ -297,7 +283,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border py-6 text-center">
         <p className="text-xs text-muted-foreground">
-          AI · Power Platform · Microsoft 365 Solutions — © {new Date().getFullYear()} Binary Roots
+          Microsoft 365 Solutions AI · Power Platform  — © {new Date().getFullYear()} Binary Roots
         </p>
       </footer>
     </div>
